@@ -1,25 +1,27 @@
 #include "main.h"
 
 /**
-* print_char - prints char from the va_list
-* print_string - prints a string parameter from a va_list
-* @ap: va_list from calling function
-* Return: integer count of characters printed
+* _printf - Produces output according to a format
+* @format: Is a character string. The format string is composed of zero or more directives
+* Return: The number of characters printed (excluding the null byte used to end output to strings)
 */
-int print_char(va_list ap)
+int _printf(const char *format, ...)
 {
-         return (_putchar(va_arg(ap, int)));
-}
-
-int print_string(va_list ap)
-{
-         char *str = va_arg(ap, char *);
-         int count = 0;
-  
-         if (!str)
-                 str = "(null)";
-         while (str[count] != '\0')
-                 count += _putchar(str[count]);
-  
-         return (count);
+         int size;
+         va_list args;
+         
+         if(format==NULL)
+                  return(-1);
+         
+         size=_strlen(format);
+         if(size <= 0)
+                  return(0);
+         
+         va_start(args, format);
+         size=handler(format, args);
+         
+         _putchar(-1);
+         va_end(args);
+         
+         return(size);
 } // by Omar Cherni & Saif Gaida
