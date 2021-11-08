@@ -9,7 +9,7 @@
  * @c: The character
  * @fn: The function associated
  */
-typedef struct printf
+typedef struct cast
 {
 	char c;
 	int (*fun)(va_list);
