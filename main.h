@@ -1,5 +1,5 @@
-#ifndef MAIN_H
-#define MAIN_H
+#ifndef MAIN_H_
+#define MAIN_H_
 #include<limits.h>
 #include<stdio.h>
 #include<stdlib.h>
@@ -16,6 +16,7 @@ typedef struct cast
 } printf_t;
 
 int _putchar(char c);
+int _strlen(const char *format, ...);
 int _printf(const char *format, ...);
 int print_char(va_list ap);
 int print_string(va_list ap);
@@ -27,4 +28,10 @@ int print_digit(int num, int*count);
 int print_unsigned_digit(unsigned int num, int *count);
 int print_digit_octal(unsigned int num, int *count);
 int call_print_fn(char ch, va_list ap);
-#endif //MAIN_H
+char *_itoa(int d);
+char *pchr(va_list ap);
+char *pstr(va_list ap);
+char *pper(va_list ap);
+char *pint(va_list ap);
+
+#endif //MAIN_H_
