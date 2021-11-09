@@ -18,6 +18,9 @@ struct convert
 };
 typedef struct convert conv_t;
 int _printf(const char *format, ...);
+int fun_string(va_list arguments);
+int fun_character(va_list arguments);
+int fun_integer(va_list arguments);
 int _putchar(char c);
 int _print_char(va_list);
 int _print_string(va_list);
