@@ -2,29 +2,32 @@
 /**
  *@funcs - structure to hold cast types
  */
-convert funcs[] = {
-			{"c", _print_char},
-					{"s", _print_string},
-							{"%", _print_percent},
-									{"d", _print_int},
-											{"i", _print_int},
-													{NULL, NULL}
-				}
 /**
+ * get_func - check depending on separator
+ * @s: char
+ *@ap: argument of type va_list
+ * Return: int
  */
-int get_func(const char  s, va_list arg)
+int get_func(const char s, va_list ap)
 {
-	int i;
-	i = 0;
-		while(funcs[i].c != NULL)
+	int i = 0, count = 0;
+	printf_t ch[] = {
+		{'c', print_char},
+		{'s', print_string},
+		{'%', print_percent},
+		{'d', print_int},
+		{'i', print_int},
+
+	};
+	while (ch[i].c != 0)
+	{
+		if (ch[i].c == s)
 		{
-			if(s == funcs[i].sym)
-			{
-				count = count + func[i].f(arg);
-				return(count);
-			}
-		i++;
+			count = count + ch[i].fun(ap);
+			return (count);
 		}
-		return(0);
+		i++;
+	}
+	return (0);
 }
 
