@@ -1,28 +1,41 @@
 #include "main.h"
+
 /**
- * _printf - output that prints formatted data
- * @format: is a character string
- * Return: The number of characters printed (excluding the null byte used to end output to strings
- */
+*printf - prints messages
+*@format: message to print
+*/
 int _printf(const char *format, ...)
 {
-	int fresult = 0;
-	va_list args;
+	va_list arg;
+	int i = 0, count = 0, fun = 0;
 
-	conv_t funcs[] = {
-		{"c", _print_char},
-		{"s", _print_string},
-		{"%", _print_percent},
-		{"d", _print_int},
-		{"i", _print_int},
-		{NULL, NULL}
-	};
-
-
-	if (format == NULL)
-		return (-1);
-	va_start(args, format);
-	fresult = print(format, funcs, args);
-	va_end(args);
-	return (fresult);
+	if (!format || (format[0] == '%' && format[1] == '\0'))
+	return (-1);
+	va_start(arg, format);
+	while (*(format + i) && format)
+	{
+		if (*(format + i) != '%')
+		{
+			_putchar (*(format + i));
+			count++;
+		}
+		if (*(format + i) == '%')
+		{
+			fun = get_func(*(format + (i + 1)), arg);
+			if (fun != 0)
+			{
+				count = count + fun;
+				i = i + 2;
+				continue;
+			}
+			if (*(format + (i + 1)) == '\0')
+			{
+				_putchar(*(format + i));
+				count++;
+			}
+		}
+			i++;
+	}
+	va_end(arg);
+	return (count);
 }
