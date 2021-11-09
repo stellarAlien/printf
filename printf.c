@@ -1,41 +1,28 @@
 #include "main.h"
-
 /**
-*printf - prints messages
-*@format: message to print
-*/
+ * _printf - prints formatted data
+ * @format: string
+ * Return: count
+ */
 int _printf(const char *format, ...)
 {
-	va_list arg;
-	int i = 0, count = 0, fun = 0;
+	int count = 0;
+	va_list args;
 
-	if (!format || (format[0] == '%' && format[1] == '\0'))
-	return (-1);
-	va_start(arg, format);
-	while (*(format + i) && format)
-	{
-		if (*(format + i) != '%')
-		{
-			_putchar (*(format + i));
-			count++;
-		}
-		if (*(format + i) == '%')
-		{
-			fun = get_func(*(format + (i + 1)), arg);
-			if (fun != 0)
-			{
-				count = count + fun;
-				i = i + 2;
-				continue;
-			}
-			if (*(format + (i + 1)) == '\0')
-			{
-				_putchar(*(format + i));
-				count++;
-			}
-		}
-			i++;
-	}
-	va_end(arg);
+	convert_t funcs[] = {
+		{"c", print_char},
+		{"s", print_string},
+		{"%", print_percent},
+		{"d", print_int},
+		{"i", print_int},
+		{NULL, NULL}
+	};
+
+
+	if (format == NULL)
+		return (-1);
+	va_start(args, format);
+	count = print(format, funcs, args);
+	va_end(args);
 	return (count);
 }
