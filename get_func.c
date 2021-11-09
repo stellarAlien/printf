@@ -23,11 +23,10 @@ int get_func(const char s, va_list ap)
 	{
 		if (ch[i].c == s)
 		{
-			count = count + ch[i].fun(ap);
+			count = count + ch[i].get_fun(ap);
 			return (count);
 		}
 		i++;
 	}
 	return (0);
 }
-
