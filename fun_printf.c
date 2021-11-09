@@ -1,74 +1,71 @@
 #include "main.h"
-
 /**
- * @fun - print string
- * @arguments: va_list
- * Return: to a string
+ * print_char - prints a character
+ * @list: list
+ * Return: 1
  */
-int fun_string(va_list arguments)
+int print_char(va_list list)
 {
-	char *str;
-	int i = 0;
+	_putchar(va_arg(list, int));
+	return (1);
+}
+/**
+ * print_string - prints a string
+ * @list: list
+ * Return: i
+ */
+int print_string(va_list list)
+{
+	int i;
+	char *s;
 
-	str = va_arg(arguments, char *);
-	if (str == NULL)
-	{
-		str = "(null)";
-	}
-	for (; *str; str++)
-	{
-		putchar(*str);
-		i++;
-	}
+	s = va_arg(list, char *);
+	if (s == NULL)
+		s = "(null)";
+
+	for (i = 0; s[i] != '\0'; i++)
+		_putchar(s[i]);
 	return (i);
 }
-
 /**
- * fun_character - print character
- * @arguments: va_list
- * Return: character
+ *print_percent - print percent
+ *@list: argument
+ * Return: 1
  */
-int fun_character(va_list arguments)
+int print_percent(__attribute__((unused))va_list list)
 {
-	int x = 0;
 
-	x = va_arg(arguments, int);
-	_putchar(x);
+	_putchar('%');
 	return (1);
 }
 
 /**
- * fun_integer - print integer and digit
- * @arguments: va_list
- * Return: int
+ * print_int - prints an integer.
+ * @args: argument pointer
+ * Return: i
  */
-int fun_integer(va_list arguments)
+int print_int(va_list args)
 {
-	int i, d, length;
+	int n = va_arg(args, int);
 	unsigned int x;
+	int i = 0;
+	int d = 1;
 
-	i  = va_arg(arguments, int);
-	d = 1;
-	length = 0;
-
-	if (i < 0)
+	if (n < 0)
 	{
-		length = length + _putchar('-');
-		x = i * -1;
+		_putchar('-');
+		n = n * -1;
+		i++;
 	}
-	else
+	x = n;
+	while ((x / d) > 9)
+		d = d * 10;
+	while (d > 0)
 	{
-		x = i;
-	}
-
-	while (x / d > 9)
-	d = d * 10;
-
-	while (d != 0)
-	{
-		length = length + _putchar('0' + x / d);
+		_putchar(x / d + '0');
 		x = x % d;
 		d = d / 10;
+		i++;
 	}
-	return (length);
+	return (i);
 }
