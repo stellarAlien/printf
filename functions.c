@@ -4,9 +4,9 @@
  * @list: list
  * Return: 1
  */
-int print_char(va_list list)
+int print_char(va_list args)
 {
-	_putchar(va_arg(list, int));
+	_putchar(va_arg(args, int));
 	return (1);
 }
 /**
@@ -14,12 +14,12 @@ int print_char(va_list list)
  * @list: list
  * Return: i
  */
-int print_string(va_list list)
+int print_string(va_list args)
 {
 	int i;
 	char *s;
 
-	s = va_arg(list, char *);
+	s = va_arg(args, char *);
 	if (s == NULL)
 		s = "(null)";
 
@@ -32,7 +32,7 @@ int print_string(va_list list)
  *@list: argument
  * Return: 1
  */
-int print_percent(__attribute__((unused))va_list list)
+int print_percent(__attribute__((unused))va_list args)
 {
 
 	_putchar('%');
