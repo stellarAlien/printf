@@ -67,7 +67,7 @@ If an output error is encountered, a negative value is returned.
 
 ## Examples
 
-**#include "holberton.h"**
+**#include "main.h"**
 
 _printf("Hello Holberton"); **// the output will be: Hello Holberton**
 
